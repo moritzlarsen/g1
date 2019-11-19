@@ -1,0 +1,18 @@
+---
+title: "Daten einlesen"
+output: html_notebook
+---
+
+Package readr laden:
+```{r}
+library(readr)
+```
+
+Datensätze einlesen:
+```{r}
+umsatzdaten <- read_csv("umsatzdaten_gekuerzt.csv")
+wetter <- read_csv("wetter.csv")
+kiwo <- read_csv("kiwo.csv")
+```
+
+
