@@ -1,0 +1,22 @@
+Umsatzfaktoren
+
+Wochentage
+Schulferien
+Feiertage
+KielerWoche
+Monatsanfang-/ende
+Monate
+Temperatur (in abhängigkeit zur Jahreszeit)
+
+
+extra variablen
+wochentag (text)
+Schulferien (1 = Ferientag /0)
+Feiertag (1/0)
+Vorfeiertag (1/0)
+KielerWoche (1/0)
+Monat (text)
+Monatsanfang-/ende (1-/30/31)
+
+Temperatur (zahl)
+Bewölkung (1-8)
