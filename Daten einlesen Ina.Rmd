@@ -27,8 +27,7 @@ umsatzdaten$dayOfMonth <- day(umsatzdaten$Datum)
 
 umsatzdaten$holiday <- is.holiday(umsatzdaten$Datum,germanHolidays)
 
-umsatzdaten %>% 
-  mutate(dayOfMonth, EndOfMonth = ifelse(dayOfMonth <=31 & dayOfMonth >= 28,TRUE, FALSE))
+umsatzdaten$EndOfMonth <- ifelse(umsatzdaten$dayOfMonth <=31 & umsatzdaten$dayOfMonth >= 28,TRUE, FALSE)
  
 
 
