@@ -6,6 +6,10 @@ output: html_notebook
 Package readr laden:
 ```{r}
 library(readr)
+library(lubridate)
+library(chron)
+library(timeDate)
+library(dplyr)
 ```
 
 Datensätze einlesen:
@@ -17,9 +21,22 @@ kiwo <- read_csv("kiwo.csv")
 
 Kiwodaten und Wetterdaten zum Datensatz hinzufügen
 ```{r}
-umsatzdaten_kiwo <- left_join(umsatzdaten,kiwo)
+umsatzdaten <- left_join(umsatzdaten,kiwo)
 
-daten <- left_join(umsatzdaten_kiwo, wetter)
+umsatzdaten <- left_join(umsatzdaten, wetter)
+```
+Variablen hinzufügen
+```{r}
+umsatzdaten$weekday <- weekdays(umsatzdaten$Datum)
+umsatzdaten$month <- months(umsatzdaten$Datum)
+umsatzdaten$dayOfMonth <- day(umsatzdaten$Datum)
+
+hlist <- c("DEAscension", "DECorpusChristi", "DEGermanUnity", "DEChristmasEve", "DENewYearsEve", "Easter")
+germanHolidays <- dates(as.character(holiday(2013:2018,hlist)),format="Y-M-D")
+
+umsatzdaten$holiday <- is.holiday(umsatzdaten$Datum,germanHolidays)
+
+umsatzdaten$EndOfMonth <- ifelse(umsatzdaten$dayOfMonth <=31 & umsatzdaten$dayOfMonth >= 28,TRUE, FALSE)
 ```
 
 
