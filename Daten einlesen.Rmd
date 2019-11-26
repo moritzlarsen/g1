@@ -31,12 +31,16 @@ umsatzdaten$weekday <- weekdays(umsatzdaten$Datum)
 umsatzdaten$month <- months(umsatzdaten$Datum)
 umsatzdaten$dayOfMonth <- day(umsatzdaten$Datum)
 
-hlist <- c("DEAscension", "DECorpusChristi", "DEGermanUnity", "DEChristmasEve", "DENewYearsEve", "Easter")
+hlist <- c("DEAscension", "DEGermanUnity", "DEChristmasEve", "DENewYearsEve", "Easter", "EasterMonday","Pentecost","PentecostMonday", "GoodFriday")
 germanHolidays <- dates(as.character(holiday(2013:2019,hlist)),format="Y-M-D")
 
 umsatzdaten$holiday <- is.holiday(umsatzdaten$Datum,germanHolidays)
 
+umsatzdaten$holiday[str_detect(umsatzdaten$Datum, "\\d{4}-05-01")] <- TRUE
+# umsatzdaten$holiday[str_detect(umsatzdaten$Datum, "201[7-9]-10-31")] <- TRUE
+
 umsatzdaten$EndOfMonth <- ifelse(umsatzdaten$dayOfMonth <=31 & umsatzdaten$dayOfMonth >= 28,TRUE, FALSE)
 umsatzdaten$BeginningOfMonth <- ifelse(umsatzdaten$dayOfMonth <=4 & umsatzdaten$dayOfMonth >= 1,TRUE, FALSE)
+
 ```
 

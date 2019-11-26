@@ -1752,106 +1752,53 @@ summary {
 <p>Package readr laden:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubGlicmFyeShyZWFkcilcbmxpYnJhcnkobHVicmlkYXRlKVxubGlicmFyeShjaHJvbilcbmxpYnJhcnkodGltZURhdGUpXG5saWJyYXJ5KGRwbHlyKVxuYGBgXG5gYGAifQ== -->
-<pre class="r"><code>```r
-library(readr)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxubGlicmFyeShyZWFkcilcbmxpYnJhcnkobHVicmlkYXRlKVxubGlicmFyeShjaHJvbilcbmxpYnJhcnkodGltZURhdGUpXG5saWJyYXJ5KGRwbHlyKVxuYGBgXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r</p>
+<pre class="r"><code>library(readr)
 library(lubridate)
 library(chron)
 library(timeDate)
 library(dplyr)</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-Datensätze einlesen:
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxudW1zYXR6ZGF0ZW4gPC0gcmVhZF9jc3YoXFx1bXNhdHpkYXRlbl9nZWt1ZXJ6dC5jc3ZcXClcbndldHRlciA8LSByZWFkX2NzdihcXHdldHRlci5jc3ZcXClcbmtpd28gPC0gcmVhZF9jc3YoXFxraXdvLmNzdlxcKVxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-umsatzdaten &lt;- read_csv(\umsatzdaten_gekuerzt.csv\)
-wetter &lt;- read_csv(\wetter.csv\)
-kiwo &lt;- read_csv(\kiwo.csv\)</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-Kiwodaten und Wetterdaten zum Datensatz hinzufügen
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxudW1zYXR6ZGF0ZW4gPC0gbGVmdF9qb2luKHVtc2F0emRhdGVuLCB3ZXR0ZXIpXG5cbmBgYFxuYGBgIn0= --&gt;
-
-```r
-```r
-umsatzdaten &lt;- left_join(umsatzdaten, wetter)
-</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-output-begin eyJkYXRhIjoiSm9pbmluZywgYnkgPSBcXERhdHVtXFxcbiJ9 --&gt;
-</code></pre>
-<p>Joining, by = <br />
-</p>
-<pre><code>
-
-
-&lt;!-- rnb-output-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-Variablen hinzufügen
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxudW1zYXR6ZGF0ZW4kd2Vla2RheSA8LSB3ZWVrZGF5cyh1bXNhdHpkYXRlbiREYXR1bSlcbnVtc2F0emRhdGVuJG1vbnRoIDwtIG1vbnRocyh1bXNhdHpkYXRlbiREYXR1bSlcbnVtc2F0emRhdGVuJGRheU9mTW9udGggPC0gZGF5KHVtc2F0emRhdGVuJERhdHVtKVxuXG5obGlzdCA8LSBjKFxcREVBc2NlbnNpb25cXCwgXFxERUNvcnB1c0NocmlzdGlcXCwgXFxERUdlcm1hblVuaXR5XFwsIFxcREVDaHJpc3RtYXNFdmVcXCwgXFxERU5ld1llYXJzRXZlXFwsIFxcRWFzdGVyXFwpXG5nZXJtYW5Ib2xpZGF5cyA8LSBkYXRlcyhhcy5jaGFyYWN0ZXIoaG9saWRheSgyMDEzOjIwMTgsaGxpc3QpKSxmb3JtYXQ9XFxZLU0tRFxcKVxuXG51bXNhdHpkYXRlbiRob2xpZGF5IDwtIGlzLmhvbGlkYXkodW1zYXR6ZGF0ZW4kRGF0dW0sZ2VybWFuSG9saWRheXMpXG5cbnVtc2F0emRhdGVuJEVuZE9mTW9udGggPC0gaWZlbHNlKHVtc2F0emRhdGVuJGRheU9mTW9udGggPD0zMSAmIHVtc2F0emRhdGVuJGRheU9mTW9udGggPj0gMjgsVFJVRSwgRkFMU0UpXG5gYGBcbmBgYCJ9 --&gt;
-
-```r
-```r
-umsatzdaten$weekday &lt;- weekdays(umsatzdaten$Datum)
-umsatzdaten$month &lt;- months(umsatzdaten$Datum)
-umsatzdaten$dayOfMonth &lt;- day(umsatzdaten$Datum)
-
-hlist &lt;- c(\DEAscension\, \DECorpusChristi\, \DEGermanUnity\, \DEChristmasEve\, \DENewYearsEve\, \Easter\)
-germanHolidays &lt;- dates(as.character(holiday(2013:2018,hlist)),format=\Y-M-D\)
-
-umsatzdaten$holiday &lt;- is.holiday(umsatzdaten$Datum,germanHolidays)
-
-umsatzdaten$EndOfMonth &lt;- ifelse(umsatzdaten$dayOfMonth &lt;=31 &amp; umsatzdaten$dayOfMonth &gt;= 28,TRUE, FALSE)</code></pre>
-<p>```</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Datensätze einlesen:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudW1zYXR6ZGF0ZW4gPC0gcmVhZF9jc3YoXCJ1bXNhdHpkYXRlbl9nZWt1ZXJ6dC5jc3ZcIilcbndldHRlciA8LSByZWFkX2NzdihcIndldHRlci5jc3ZcIilcbmtpd28gPC0gcmVhZF9jc3YoXCJraXdvLmNzdlwiKVxuYGBgIn0= -->
+<pre class="r"><code>umsatzdaten &lt;- read_csv(&quot;umsatzdaten_gekuerzt.csv&quot;)
+wetter &lt;- read_csv(&quot;wetter.csv&quot;)
+kiwo &lt;- read_csv(&quot;kiwo.csv&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Kiwodaten und Wetterdaten zum Datensatz hinzufügen</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudW1zYXR6ZGF0ZW4gPC0gbGVmdF9qb2luKHVtc2F0emRhdGVuLGtpd28pXG5cbnVtc2F0emRhdGVuIDwtIGxlZnRfam9pbih1bXNhdHpkYXRlbiwgd2V0dGVyKVxuYGBgIn0= -->
+<pre class="r"><code>umsatzdaten &lt;- left_join(umsatzdaten,kiwo)
+
+umsatzdaten &lt;- left_join(umsatzdaten, wetter)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Variablen hinzufügen</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudW1zYXR6ZGF0ZW4kaG9saWRheVtzdHJfZGV0ZWN0KHVtc2F0emRhdGVuJERhdHVtLCBcIjIwWzE3LTE5XS0xMC0zMVwiKV0gPC0gVFJVRVxuXG5gYGAifQ== -->
+<pre class="r"><code>umsatzdaten$holiday[str_detect(umsatzdaten$Datum, &quot;20[17-19]-10-31&quot;)] &lt;- TRUE
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRmVobGVyIGluIHN0cmlfZGV0ZWN0X3JlZ2V4KHN0cmluZywgcGF0dGVybiwgbmVnYXRlID0gbmVnYXRlLCBvcHRzX3JlZ2V4ID0gb3B0cyhwYXR0ZXJuKSkgOiBcbiAgSW4gYSBjaGFyYWN0ZXIgcmFuZ2UgW3gteV0sIHggaXMgZ3JlYXRlciB0aGFuIHkuIChVX1JFR0VYX0lOVkFMSURfUkFOR0UpXG4ifQ== -->
+<pre><code>Fehler in stri_detect_regex(string, pattern, negate = negate, opts_regex = opts(pattern)) : 
+  In a character range [x-y], x is greater than y. (U_REGEX_INVALID_RANGE)</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkRhdGVuIGVpbmxlc2VuIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCg0KUGFja2FnZSByZWFkciBsYWRlbjoNCmBgYHtyfQ0KbGlicmFyeShyZWFkcikNCmxpYnJhcnkobHVicmlkYXRlKQ0KbGlicmFyeShjaHJvbikNCmxpYnJhcnkodGltZURhdGUpDQpsaWJyYXJ5KGRwbHlyKQ0KYGBgDQoNCkRhdGVuc8OkdHplIGVpbmxlc2VuOg0KYGBge3J9DQp1bXNhdHpkYXRlbiA8LSByZWFkX2NzdigidW1zYXR6ZGF0ZW5fZ2VrdWVyenQuY3N2IikNCndldHRlciA8LSByZWFkX2Nzdigid2V0dGVyLmNzdiIpDQpraXdvIDwtIHJlYWRfY3N2KCJraXdvLmNzdiIpDQpgYGANCg0KS2l3b2RhdGVuIHVuZCBXZXR0ZXJkYXRlbiB6dW0gRGF0ZW5zYXR6IGhpbnp1ZsO8Z2VuDQpgYGB7cn0NCnVtc2F0emRhdGVuIDwtIGxlZnRfam9pbih1bXNhdHpkYXRlbixraXdvKQ0KDQp1bXNhdHpkYXRlbiA8LSBsZWZ0X2pvaW4odW1zYXR6ZGF0ZW4sIHdldHRlcikNCmBgYA0KVmFyaWFibGVuIGhpbnp1ZsO8Z2VuDQpgYGB7cn0NCnVtc2F0emRhdGVuJHdlZWtkYXkgPC0gd2Vla2RheXModW1zYXR6ZGF0ZW4kRGF0dW0pDQp1bXNhdHpkYXRlbiRtb250aCA8LSBtb250aHModW1zYXR6ZGF0ZW4kRGF0dW0pDQp1bXNhdHpkYXRlbiRkYXlPZk1vbnRoIDwtIGRheSh1bXNhdHpkYXRlbiREYXR1bSkNCg0KaGxpc3QgPC0gYygiREVBc2NlbnNpb24iLCAiREVDb3JwdXNDaHJpc3RpIiwgIkRFR2VybWFuVW5pdHkiLCAiREVDaHJpc3RtYXNFdmUiLCAiREVOZXdZZWFyc0V2ZSIsICJFYXN0ZXIiKQ0KZ2VybWFuSG9saWRheXMgPC0gZGF0ZXMoYXMuY2hhcmFjdGVyKGhvbGlkYXkoMjAxMzoyMDE5LGhsaXN0KSksZm9ybWF0PSJZLU0tRCIpDQoNCnVtc2F0emRhdGVuJGhvbGlkYXkgPC0gaXMuaG9saWRheSh1bXNhdHpkYXRlbiREYXR1bSxnZXJtYW5Ib2xpZGF5cykNCg0KdW1zYXR6ZGF0ZW4kRW5kT2ZNb250aCA8LSBpZmVsc2UodW1zYXR6ZGF0ZW4kZGF5T2ZNb250aCA8PTMxICYgdW1zYXR6ZGF0ZW4kZGF5T2ZNb250aCA+PSAyOCxUUlVFLCBGQUxTRSkNCnVtc2F0emRhdGVuJEJlZ2lubmluZ09mTW9udGggPC0gaWZlbHNlKHVtc2F0emRhdGVuJGRheU9mTW9udGggPD00ICYgdW1zYXR6ZGF0ZW4kZGF5T2ZNb250aCA+PSAxLFRSVUUsIEZBTFNFKQ0KYGBgDQoNCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0ZW4gZWlubGVzZW4iCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KClBhY2thZ2UgcmVhZHIgbGFkZW46CmBgYHtyfQpsaWJyYXJ5KHJlYWRyKQpsaWJyYXJ5KGx1YnJpZGF0ZSkKbGlicmFyeShjaHJvbikKbGlicmFyeSh0aW1lRGF0ZSkKbGlicmFyeShkcGx5cikKYGBgCgpEYXRlbnPDpHR6ZSBlaW5sZXNlbjoKYGBge3J9CnVtc2F0emRhdGVuIDwtIHJlYWRfY3N2KCJ1bXNhdHpkYXRlbl9nZWt1ZXJ6dC5jc3YiKQp3ZXR0ZXIgPC0gcmVhZF9jc3YoIndldHRlci5jc3YiKQpraXdvIDwtIHJlYWRfY3N2KCJraXdvLmNzdiIpCmBgYAoKS2l3b2RhdGVuIHVuZCBXZXR0ZXJkYXRlbiB6dW0gRGF0ZW5zYXR6IGhpbnp1ZsO8Z2VuCmBgYHtyfQp1bXNhdHpkYXRlbiA8LSBsZWZ0X2pvaW4odW1zYXR6ZGF0ZW4sa2l3bykKCnVtc2F0emRhdGVuIDwtIGxlZnRfam9pbih1bXNhdHpkYXRlbiwgd2V0dGVyKQpgYGAKVmFyaWFibGVuIGhpbnp1ZsO8Z2VuCmBgYHtyfQp1bXNhdHpkYXRlbiR3ZWVrZGF5IDwtIHdlZWtkYXlzKHVtc2F0emRhdGVuJERhdHVtKQp1bXNhdHpkYXRlbiRtb250aCA8LSBtb250aHModW1zYXR6ZGF0ZW4kRGF0dW0pCnVtc2F0emRhdGVuJGRheU9mTW9udGggPC0gZGF5KHVtc2F0emRhdGVuJERhdHVtKQoKaGxpc3QgPC0gYygiREVBc2NlbnNpb24iLCAiREVHZXJtYW5Vbml0eSIsICJERUNocmlzdG1hc0V2ZSIsICJERU5ld1llYXJzRXZlIiwgIkVhc3RlciIsICJFYXN0ZXJNb25kYXkiLCJQZW50ZWNvc3QiLCJQZW50ZWNvc3RNb25kYXkiLCAiR29vZEZyaWRheSIpCmdlcm1hbkhvbGlkYXlzIDwtIGRhdGVzKGFzLmNoYXJhY3Rlcihob2xpZGF5KDIwMTM6MjAxOSxobGlzdCkpLGZvcm1hdD0iWS1NLUQiKQoKdW1zYXR6ZGF0ZW4kaG9saWRheSA8LSBpcy5ob2xpZGF5KHVtc2F0emRhdGVuJERhdHVtLGdlcm1hbkhvbGlkYXlzKQoKdW1zYXR6ZGF0ZW4kaG9saWRheVtzdHJfZGV0ZWN0KHVtc2F0emRhdGVuJERhdHVtLCAiXFxkezR9LTA1LTAxIildIDwtIFRSVUUKIyB1bXNhdHpkYXRlbiRob2xpZGF5W3N0cl9kZXRlY3QodW1zYXR6ZGF0ZW4kRGF0dW0sICIyMDFbNy05XS0xMC0zMSIpXSA8LSBUUlVFCgp1bXNhdHpkYXRlbiRFbmRPZk1vbnRoIDwtIGlmZWxzZSh1bXNhdHpkYXRlbiRkYXlPZk1vbnRoIDw9MzEgJiB1bXNhdHpkYXRlbiRkYXlPZk1vbnRoID49IDI4LFRSVUUsIEZBTFNFKQp1bXNhdHpkYXRlbiRCZWdpbm5pbmdPZk1vbnRoIDwtIGlmZWxzZSh1bXNhdHpkYXRlbiRkYXlPZk1vbnRoIDw9NCAmIHVtc2F0emRhdGVuJGRheU9mTW9udGggPj0gMSxUUlVFLCBGQUxTRSkKCmBgYAoK</div>
 
 
 
