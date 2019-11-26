@@ -1,0 +1,38 @@
+---
+title: "Daten einlesen"
+output: html_notebook
+---
+
+Package readr laden:
+```{r}
+library(readr)
+library(lubridate)
+library(chron)
+library(timeDate)
+library(dplyr)
+hlist <- c("DEAscension", "DECorpusChristi", "DEGermanUnity", "DEChristmasEve", "DENewYearsEve")
+germanHolidays <- dates(as.character(holiday(2013:2018,hlist)),format="Y-M-D")
+```
+
+Datensätze einlesen:
+```{r}
+umsatzdaten <- read_csv("umsatzdaten_gekuerzt.csv")
+wetter <- read_csv("wetter.csv")
+kiwo <- read_csv("kiwo.csv")
+
+
+umsatzdaten$weekday <- weekdays(umsatzdaten$Datum)
+umsatzdaten$month <- months(umsatzdaten$Datum)
+umsatzdaten$dayOfMonth <- day(umsatzdaten$Datum)
+
+umsatzdaten$holiday <- is.holiday(umsatzdaten$Datum,germanHolidays)
+
+umsatzdaten %>% 
+  mutate(dayOfMonth, EndOfMonth = ifelse(dayOfMonth <=31 & dayOfMonth >= 28,TRUE, FALSE))
+ 
+
+
+
+View(umsatzdaten)
+```
+
