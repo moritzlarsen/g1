@@ -1767,9 +1767,19 @@ kiwo &lt;- read_csv(&quot;kiwo.csv&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>Kiwodaten und Wetterdaten zum Datensatz hinzufügen</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudW1zYXR6ZGF0ZW5fa2l3byA8LSBsZWZ0X2pvaW4odW1zYXR6ZGF0ZW4sa2l3bylcblxuZGF0ZW4gPC0gbGVmdF9qb2luKHVtc2F0emRhdGVuX2tpd28sIHdldHRlcilcbmBgYCJ9 -->
+<pre class="r"><code>umsatzdaten_kiwo &lt;- left_join(umsatzdaten,kiwo)
+
+daten &lt;- left_join(umsatzdaten_kiwo, wetter)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0ZW4gZWlubGVzZW4iCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KClBhY2thZ2UgcmVhZHIgbGFkZW46CmBgYHtyfQpsaWJyYXJ5KHJlYWRyKQpgYGAKCkRhdGVuc8OkdHplIGVpbmxlc2VuOgpgYGB7cn0KdW1zYXR6ZGF0ZW4gPC0gcmVhZF9jc3YoInVtc2F0emRhdGVuX2dla3Vlcnp0LmNzdiIpCndldHRlciA8LSByZWFkX2Nzdigid2V0dGVyLmNzdiIpCmtpd28gPC0gcmVhZF9jc3YoImtpd28uY3N2IikKYGBgCgoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0ZW4gZWlubGVzZW4iCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KClBhY2thZ2UgcmVhZHIgbGFkZW46CmBgYHtyfQpsaWJyYXJ5KHJlYWRyKQpgYGAKCkRhdGVuc8OkdHplIGVpbmxlc2VuOgpgYGB7cn0KdW1zYXR6ZGF0ZW4gPC0gcmVhZF9jc3YoInVtc2F0emRhdGVuX2dla3Vlcnp0LmNzdiIpCndldHRlciA8LSByZWFkX2Nzdigid2V0dGVyLmNzdiIpCmtpd28gPC0gcmVhZF9jc3YoImtpd28uY3N2IikKYGBgCgpLaXdvZGF0ZW4gdW5kIFdldHRlcmRhdGVuIHp1bSBEYXRlbnNhdHogaGluenVmw7xnZW4KYGBge3J9CnVtc2F0emRhdGVuX2tpd28gPC0gbGVmdF9qb2luKHVtc2F0emRhdGVuLGtpd28pCgpkYXRlbiA8LSBsZWZ0X2pvaW4odW1zYXR6ZGF0ZW5fa2l3bywgd2V0dGVyKQpgYGAKCgo=</div>
 
 
 

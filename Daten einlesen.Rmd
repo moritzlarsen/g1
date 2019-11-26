@@ -15,4 +15,11 @@ wetter <- read_csv("wetter.csv")
 kiwo <- read_csv("kiwo.csv")
 ```
 
+Kiwodaten und Wetterdaten zum Datensatz hinzufügen
+```{r}
+umsatzdaten_kiwo <- left_join(umsatzdaten,kiwo)
+
+daten <- left_join(umsatzdaten_kiwo, wetter)
+```
+
 
