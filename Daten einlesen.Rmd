@@ -37,6 +37,6 @@ germanHolidays <- dates(as.character(holiday(2013:2018,hlist)),format="Y-M-D")
 umsatzdaten$holiday <- is.holiday(umsatzdaten$Datum,germanHolidays)
 
 umsatzdaten$EndOfMonth <- ifelse(umsatzdaten$dayOfMonth <=31 & umsatzdaten$dayOfMonth >= 28,TRUE, FALSE)
+umsatzdaten$BeginningOfMonth <- ifelse(umsatzdaten$dayOfMonth <=4 & umsatzdaten$dayOfMonth >= 1,TRUE, FALSE)
 ```
-
 
