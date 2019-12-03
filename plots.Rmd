@@ -3,10 +3,12 @@ title: "R Notebook"
 output: html_notebook
 ---
 
+nötiges Package laden
 ```{r}
 library(ggplot2)
 ```
 
+Vergleich von Feiertag und nicht-Feiertag. Gesamt und nach Warengruppe
 ```{r}
 data_holiday <- umsatzdaten %>%
   group_by(Warengruppe, holiday) %>%
