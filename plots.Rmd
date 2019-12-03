@@ -34,3 +34,12 @@ ggplot(data_holiday)+
 
 ```
 
+Zusammenhang von Temperatur und Umsatz nach Warengruppe getrennt, mit regression line
+```{r}
+ggplot(umsatzdaten)+
+  aes(x=Temperatur, y=Umsatz)+
+  geom_point()+
+  geom_smooth(method = lm)+
+  facet_wrap(~Warengruppe)
+```
+
