@@ -1,0 +1,15 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+lm_umsatzdaten <- lm(Umsatz ~ Temperatur + factor(Bewoelkung) + holiday + KielerWoche + Windgeschwindigkeit + Wettercode + weekday + month + dayOfMonth + EndOfMonth + BeginningOfMonth + vorfeiertage, umsatzdaten)
+
+lm_umsatzdaten <- lm(Umsatz ~ as.factor(weekday)+Temperatur+KielerWoche+EndOfMonth+BeginningOfMonth, umsatzdaten)
+summary(lm_umsatzdaten)
+```
+
+
+
