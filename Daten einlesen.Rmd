@@ -32,7 +32,7 @@ umsatzdaten$month <- months(umsatzdaten$Datum)
 umsatzdaten$dayOfMonth <- day(umsatzdaten$Datum)
 
 hlist <- c("DEAscension", "DEGermanUnity", "DEChristmasEve", "DENewYearsEve", "Easter", "EasterMonday","Pentecost","PentecostMonday", "GoodFriday")
-germanHolidays <- dates(as.character(holiday(2013:2019,hlist)),format="Y-M-D")
+germanHolidays <- dates(as.character(holiday(2012:2019,hlist)),format="Y-M-D")
 
 umsatzdaten$holiday <- is.holiday(umsatzdaten$Datum,germanHolidays)
 
@@ -50,4 +50,3 @@ umsatzdaten$vorfeiertage <- FALSE
 umsatzdaten <- mutate(umsatzdaten, vorfeiertage = lead(holiday,5))
 
 ```
-
