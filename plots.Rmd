@@ -42,4 +42,3 @@ ggplot(umsatzdaten)+
   geom_smooth(method = lm)+
   facet_wrap(~Warengruppe)
 ```
-
