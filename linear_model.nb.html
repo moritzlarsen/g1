@@ -1751,46 +1751,41 @@ summary {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShsbV91bXNhdHpkYXRlbilcblxuYGBgIn0= -->
-<pre class="r"><code>summary(lm_umsatzdaten)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG1fdW1zYXR6ZGF0ZW4gPC0gbG0oVW1zYXR6IH4gVGVtcGVyYXR1ciArIGZhY3RvcihCZXdvZWxrdW5nKSArIGhvbGlkYXkgKyBLaWVsZXJXb2NoZSArIFdpbmRnZXNjaHdpbmRpZ2tlaXQgKyBXZXR0ZXJjb2RlICsgd2Vla2RheSArIG1vbnRoICsgZGF5T2ZNb250aCArIEVuZE9mTW9udGggKyBCZWdpbm5pbmdPZk1vbnRoICsgdm9yZmVpZXJ0YWdlLCB1bXNhdHpkYXRlbilcblxubG1fdW1zYXR6ZGF0ZW4gPC0gbG0oVW1zYXR6IH4gYXMuZmFjdG9yKHdlZWtkYXkpK1RlbXBlcmF0dXIrS2llbGVyV29jaGUrRW5kT2ZNb250aCtCZWdpbm5pbmdPZk1vbnRoLCB1bXNhdHpkYXRlbilcbnN1bW1hcnkobG1fdW1zYXR6ZGF0ZW4pXG5gYGAifQ== -->
+<pre class="r"><code>lm_umsatzdaten &lt;- lm(Umsatz ~ Temperatur + factor(Bewoelkung) + holiday + KielerWoche + Windgeschwindigkeit + Wettercode + weekday + month + dayOfMonth + EndOfMonth + BeginningOfMonth + vorfeiertage, umsatzdaten)
+
+lm_umsatzdaten &lt;- lm(Umsatz ~ as.factor(weekday)+Temperatur+KielerWoche+EndOfMonth+BeginningOfMonth, umsatzdaten)
+summary(lm_umsatzdaten)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IFVtc2F0eiB+IGFzLmZhY3Rvcih3ZWVrZGF5KSArIFRlbXBlcmF0dXIgKyBLaWVsZXJXb2NoZSArIFxuICAgIEVuZE9mTW9udGggKyBCZWdpbm5pbmdPZk1vbnRoLCBkYXRhID0gdW1zYXR6ZGF0ZW4pXG5cblJlc2lkdWFsczpcbiAgICBNaW4gICAgICAxUSAgTWVkaWFuICAgICAgM1EgICAgIE1heCBcbi0zMTMuMzEgIC04Ny4yNyAgIC02LjE2ICAgODkuNDEgIDQxNy42MSBcblxuQ29lZmZpY2llbnRzOiAoMiBub3QgZGVmaW5lZCBiZWNhdXNlIG9mIHNpbmd1bGFyaXRpZXMpXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgdCB2YWx1ZSBQcig+fHR8KSAgICBcbihJbnRlcmNlcHQpICAgICAgICAgICAgICAgICAgIDI5Mi43NjEgICAgIDU4Ljg1NyAgIDQuOTc0IDEuMzRlLTA2ICoqKlxuYXMuZmFjdG9yKHdlZWtkYXkpRG9ubmVyc3RhZyAgIDQ3LjMxMiAgICAgNDAuMDc0ICAgMS4xODEgIDAuMjM5MDYgICAgXG5hcy5mYWN0b3Iod2Vla2RheSlGcmVpdGFnICAgICAxMTcuMjU0ICAgICA0MC41ODkgICAyLjg4OSAgMC4wMDQyNiAqKiBcbmFzLmZhY3Rvcih3ZWVrZGF5KU1pdHR3b2NoICAgICAgOC45MzUgICAgIDQwLjE0NyAgIDAuMjIzICAwLjgyNDA4ICAgIFxuYXMuZmFjdG9yKHdlZWtkYXkpTW9udGFnICAgICAgLTEyLjg2OCAgICAgMzkuODcyICAtMC4zMjMgIDAuNzQ3MjIgICAgXG5hcy5mYWN0b3Iod2Vla2RheSlTYW1zdGFnICAgICAgMzEuNjIyICAgICAzNS4wMzMgICAwLjkwMyAgMC4zNjc3MyAgICBcbmFzLmZhY3Rvcih3ZWVrZGF5KVNvbm50YWcgICAgIC0xOC43NjcgICAgIDM1LjY5NiAgLTAuNTI2ICAwLjU5OTYxICAgIFxuVGVtcGVyYXR1ciAgICAgICAgICAgICAgICAgICAgIC0yLjUzOSAgICAgIDIuOTg0ICAtMC44NTEgIDAuMzk1NzQgICAgXG5LaWVsZXJXb2NoZSAgICAgICAgICAgICAgICAgICAgICAgIE5BICAgICAgICAgTkEgICAgICBOQSAgICAgICBOQSAgICBcbkVuZE9mTW9udGhUUlVFICAgICAgICAgICAgICAgICAyNi4zODMgICAgIDMwLjU1OSAgIDAuODYzICAwLjM4ODkyICAgIFxuQmVnaW5uaW5nT2ZNb250aFRSVUUgICAgICAgICAgICAgICBOQSAgICAgICAgIE5BICAgICAgTkEgICAgICAgTkEgICAgXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuUmVzaWR1YWwgc3RhbmRhcmQgZXJyb3I6IDE0MC41IG9uIDIxNSBkZWdyZWVzIG9mIGZyZWVkb21cbiAgKDEwNjQ1IG9ic2VydmF0aW9ucyBkZWxldGVkIGR1ZSB0byBtaXNzaW5nbmVzcylcbk11bHRpcGxlIFItc3F1YXJlZDogIDAuMDg2NTgsXHRBZGp1c3RlZCBSLXNxdWFyZWQ6ICAwLjA1MjU5IFxuRi1zdGF0aXN0aWM6IDIuNTQ3IG9uIDggYW5kIDIxNSBERiwgIHAtdmFsdWU6IDAuMDExMzdcbiJ9 -->
-<pre><code>
-Call:
-lm(formula = Umsatz ~ as.factor(weekday) + Temperatur + KielerWoche + 
-    EndOfMonth + BeginningOfMonth, data = umsatzdaten)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--313.31  -87.27   -6.16   89.41  417.61 
-
-Coefficients: (2 not defined because of singularities)
-                             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)                   292.761     58.857   4.974 1.34e-06 ***
-as.factor(weekday)Donnerstag   47.312     40.074   1.181  0.23906    
-as.factor(weekday)Freitag     117.254     40.589   2.889  0.00426 ** 
-as.factor(weekday)Mittwoch      8.935     40.147   0.223  0.82408    
-as.factor(weekday)Montag      -12.868     39.872  -0.323  0.74722    
-as.factor(weekday)Samstag      31.622     35.033   0.903  0.36773    
-as.factor(weekday)Sonntag     -18.767     35.696  -0.526  0.59961    
-Temperatur                     -2.539      2.984  -0.851  0.39574    
-KielerWoche                        NA         NA      NA       NA    
-EndOfMonthTRUE                 26.383     30.559   0.863  0.38892    
-BeginningOfMonthTRUE               NA         NA      NA       NA    
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-Residual standard error: 140.5 on 215 degrees of freedom
-  (10645 observations deleted due to missingness)
-Multiple R-squared:  0.08658,   Adjusted R-squared:  0.05259 
-F-statistic: 2.547 on 8 and 215 DF,  p-value: 0.01137</code></pre>
-<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG1fdW1zYXR6ZGF0ZW4xIDwtIGxtKFVtc2F0en5cbiAgICAgICAgICAgICBhcy5mYWN0b3IoV2FyZW5ncnVwcGUpKlxuICAgICAgICAgICAgIFVtc2F0el9Wb3J0YWcqXG4gICAgICAgICAgICAgVGVtcGVyYXR1cipcbiAgICAgICAgICAgICB3ZWVrZGF5KlxuICAgICAgICAgICAgIGFzLmxvZ2ljYWwoS2llbGVyV29jaGUpKlxuICAgICAgICAgICAgIG1vbnRoKlxuICAgICAgICAgICAgIFVtc2F0el9Wb3Jtb25hdCpcbiAgICAgICAgICAgICAjYXMuZmFjdG9yKEJld29lbGt1bmcpK1xuICAgICAgICAgICAgICNXaW5kZ2VzY2h3aW5kaWdrZWl0K1xuICAgICAgICAgICAgICNhcy5mYWN0b3IoV2V0dGVyY29kZSkrXG4gICAgICAgICAgICAgaG9saWRheSpcbiAgICAgICAgICAgICBFbmRPZk1vbnRoXG4gICAgICAgICAgICAgI0JlZ2lubmluZ09mTW9udGgrXG4gICAgICAgICAgICAgI3ZvcmZlaWVydGFnZVxuICAgICAgICAgICAgICwgXG4gICAgICAgICAgIHVtc2F0emRhdGVuKVxuc3VtbWFyeShsbV91bXNhdHpkYXRlbjEpXG5gYGAifQ== -->
+<pre class="r"><code>lm_umsatzdaten1 &lt;- lm(Umsatz~
+             as.factor(Warengruppe)*
+             Umsatz_Vortag*
+             Temperatur*
+             weekday*
+             as.logical(KielerWoche)*
+             month*
+             Umsatz_Vormonat*
+             #as.factor(Bewoelkung)+
+             #Windgeschwindigkeit+
+             #as.factor(Wettercode)+
+             holiday*
+             EndOfMonth
+             #BeginningOfMonth+
+             #vorfeiertage
+             , 
+           umsatzdaten)
+summary(lm_umsatzdaten1)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKCmBgYHtyfQpsbV91bXNhdHpkYXRlbiA8LSBsbShVbXNhdHogfiBUZW1wZXJhdHVyICsgZmFjdG9yKEJld29lbGt1bmcpICsgaG9saWRheSArIEtpZWxlcldvY2hlICsgV2luZGdlc2Nod2luZGlna2VpdCArIFdldHRlcmNvZGUgKyB3ZWVrZGF5ICsgbW9udGggKyBkYXlPZk1vbnRoICsgRW5kT2ZNb250aCArIEJlZ2lubmluZ09mTW9udGggKyB2b3JmZWllcnRhZ2UsIHVtc2F0emRhdGVuKQoKbG1fdW1zYXR6ZGF0ZW4gPC0gbG0oVW1zYXR6IH4gYXMuZmFjdG9yKHdlZWtkYXkpK1RlbXBlcmF0dXIrS2llbGVyV29jaGUrRW5kT2ZNb250aCtCZWdpbm5pbmdPZk1vbnRoLCB1bXNhdHpkYXRlbikKc3VtbWFyeShsbV91bXNhdHpkYXRlbikKYGBgCgoKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKCmBgYHtyfQpsbV91bXNhdHpkYXRlbiA8LSBsbShVbXNhdHogfiBUZW1wZXJhdHVyICsgZmFjdG9yKEJld29lbGt1bmcpICsgaG9saWRheSArIEtpZWxlcldvY2hlICsgV2luZGdlc2Nod2luZGlna2VpdCArIFdldHRlcmNvZGUgKyB3ZWVrZGF5ICsgbW9udGggKyBkYXlPZk1vbnRoICsgRW5kT2ZNb250aCArIEJlZ2lubmluZ09mTW9udGggKyB2b3JmZWllcnRhZ2UsIHVtc2F0emRhdGVuKQoKbG1fdW1zYXR6ZGF0ZW4gPC0gbG0oVW1zYXR6IH4gYXMuZmFjdG9yKHdlZWtkYXkpK1RlbXBlcmF0dXIrS2llbGVyV29jaGUrRW5kT2ZNb250aCtCZWdpbm5pbmdPZk1vbnRoLCB1bXNhdHpkYXRlbikKc3VtbWFyeShsbV91bXNhdHpkYXRlbikKYGBgCgpgYGB7cn0KbG1fdW1zYXR6ZGF0ZW4xIDwtIGxtKFVtc2F0en4KICAgICAgICAgICAgIGFzLmZhY3RvcihXYXJlbmdydXBwZSkqCiAgICAgICAgICAgICBVbXNhdHpfVm9ydGFnKgogICAgICAgICAgICAgVGVtcGVyYXR1cioKICAgICAgICAgICAgIHdlZWtkYXkqCiAgICAgICAgICAgICBhcy5sb2dpY2FsKEtpZWxlcldvY2hlKSoKICAgICAgICAgICAgIG1vbnRoKgogICAgICAgICAgICAgVW1zYXR6X1Zvcm1vbmF0KgogICAgICAgICAgICAgI2FzLmZhY3RvcihCZXdvZWxrdW5nKSsKICAgICAgICAgICAgICNXaW5kZ2VzY2h3aW5kaWdrZWl0KwogICAgICAgICAgICAgI2FzLmZhY3RvcihXZXR0ZXJjb2RlKSsKICAgICAgICAgICAgIGhvbGlkYXkqCiAgICAgICAgICAgICBFbmRPZk1vbnRoCiAgICAgICAgICAgICAjQmVnaW5uaW5nT2ZNb250aCsKICAgICAgICAgICAgICN2b3JmZWllcnRhZ2UKICAgICAgICAgICAgICwgCiAgICAgICAgICAgdW1zYXR6ZGF0ZW4pCnN1bW1hcnkobG1fdW1zYXR6ZGF0ZW4xKQpgYGAKCgo=</div>
 
 
 
