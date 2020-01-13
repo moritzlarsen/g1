@@ -12,6 +12,27 @@ summary(lm_umsatzdaten)
 ```
 
 ```{r}
+lm_umsatzdaten2 <- lm(Umsatz~
+             as.factor(Warengruppe)+
+             Umsatz_Vortag+
+             Temperatur+
+             weekday+
+             as.logical(KielerWoche)+
+             month+
+             Umsatz_Vormonat+
+             #as.factor(Bewoelkung)+
+             #Windgeschwindigkeit+
+             #as.factor(Wettercode)+
+             holiday+
+             EndOfMonth
+             #BeginningOfMonth+
+             #vorfeiertage
+             , 
+           umsatzdaten)
+summary(lm_umsatzdaten2)
+```
+
+```{r}
 lm_umsatzdaten1 <- lm(Umsatz~
              as.factor(Warengruppe)*
              Umsatz_Vortag*
