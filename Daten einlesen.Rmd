@@ -13,9 +13,9 @@ library(dplyr)
 
 #Datensätze einlesen:
 
-umsatzdaten <- read_csv("/Users/moritz/Downloads/ws1920-datascience-master/umsatzdaten_gekuerzt.csv")
-wetter <- read_csv("/Users/moritz/Downloads/ws1920-datascience-master/wetter.csv")
-kiwo <- read_csv("/Users/moritz/Downloads/ws1920-datascience-master/kiwo.csv")
+umsatzdaten <- read_csv("/Users/moritz/g1/umsatzdaten_gekuerzt.csv")
+wetter <- read_csv("/Users/moritz/g1/wetter.csv")
+kiwo <- read_csv("/Users/moritz/g1/kiwo.csv")
 
 
 #Kiwodaten und Wetterdaten zum Datensatz hinzufügen
