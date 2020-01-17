@@ -3,30 +3,29 @@ title: "Daten einlesen"
 output: html_notebook
 ---
 
-Package readr laden:
 ```{r}
 library(readr)
 library(lubridate)
 library(chron)
 library(timeDate)
 library(dplyr)
-```
 
-Datensätze einlesen:
-```{r}
-umsatzdaten <- read_csv("umsatzdaten_gekuerzt.csv")
-wetter <- read_csv("wetter.csv")
-kiwo <- read_csv("kiwo.csv")
-```
 
-Kiwodaten und Wetterdaten zum Datensatz hinzufügen
-```{r}
+#Datensätze einlesen:
+
+umsatzdaten <- read_csv("/Users/moritz/Downloads/ws1920-datascience-master/umsatzdaten_gekuerzt.csv")
+wetter <- read_csv("/Users/moritz/Downloads/ws1920-datascience-master/wetter.csv")
+kiwo <- read_csv("/Users/moritz/Downloads/ws1920-datascience-master/kiwo.csv")
+
+
+#Kiwodaten und Wetterdaten zum Datensatz hinzufügen
+
 umsatzdaten <- left_join(umsatzdaten,kiwo)
 
 umsatzdaten <- left_join(umsatzdaten, wetter)
-```
-Variablen hinzufügen
-```{r}
+
+#Variablen hinzufügen
+
 umsatzdaten$weekday <- weekdays(umsatzdaten$Datum)
 umsatzdaten$month <- months(umsatzdaten$Datum)
 umsatzdaten$dayOfMonth <- day(umsatzdaten$Datum)
@@ -42,15 +41,14 @@ umsatzdaten$holiday <- is.holiday(umsatzdaten$Datum,germanHolidays)
 umsatzdaten$EndOfMonth <- ifelse(umsatzdaten$dayOfMonth <=31 & umsatzdaten$dayOfMonth >= 28,TRUE, FALSE)
 umsatzdaten$BeginningOfMonth <- ifelse(umsatzdaten$dayOfMonth <=4 & umsatzdaten$dayOfMonth >= 1,TRUE, FALSE)
 
-```
-Vorfeiertage
-```{r}
+
+#Vorfeiertage
+
 umsatzdaten <- arrange(umsatzdaten,Datum)
 umsatzdaten$vorfeiertage <- FALSE
 umsatzdaten <- mutate(umsatzdaten, vorfeiertage = lead(holiday,5))
 
-```
-```{r}
+
 umsatzdaten$KielerWoche[is.na(umsatzdaten$KielerWoche)] <- FALSE
 
 
@@ -77,7 +75,6 @@ umsatzdaten <- umsatzdaten %>%
   mutate(Umsatz_Monat = monat_umsatz$mean)
 
 
-
 Jan <- umsatzdaten$month=="Januar"
 Feb <- umsatzdaten$month=="Februar"
 Mar <- umsatzdaten$month=="März"
@@ -98,6 +95,7 @@ fuenfzehn <- umsatzdaten$Jahr=="2015"
 sechzehn <- umsatzdaten$Jahr=="2016"
 siebzehn <- umsatzdaten$Jahr=="2017"
 achtzehn <- umsatzdaten$Jahr=="2018"
+neunzehn <- umsatzdaten$Jahr=="2019"
 
 wg1 <- umsatzdaten$Warengruppe=="1"
 wg2 <- umsatzdaten$Warengruppe=="2"
@@ -106,6 +104,8 @@ wg4 <- umsatzdaten$Warengruppe=="4"
 wg5 <- umsatzdaten$Warengruppe=="5"
 wg6 <- umsatzdaten$Warengruppe=="6"
 
+
+umsatzdaten$Umsatz_Vormonat <- NA
 
 
 ##2012##
@@ -549,35 +549,159 @@ umsatzdaten$Umsatz_Vormonat[Feb&achtzehn&wg1] <- mean(umsatzdaten$Umsatz_Monat[J
 umsatzdaten$Umsatz_Vormonat[Mar&achtzehn&wg1] <- mean(umsatzdaten$Umsatz_Monat[Feb&achtzehn&wg1])
 umsatzdaten$Umsatz_Vormonat[Apr&achtzehn&wg1] <- mean(umsatzdaten$Umsatz_Monat[Mar&achtzehn&wg1])
 umsatzdaten$Umsatz_Vormonat[Mai&achtzehn&wg1] <- mean(umsatzdaten$Umsatz_Monat[Apr&achtzehn&wg1])
+umsatzdaten$Umsatz_Vormonat[Jun&achtzehn&wg1] <- mean(umsatzdaten$Umsatz_Monat[Mai&achtzehn&wg1])
+umsatzdaten$Umsatz_Vormonat[Jul&achtzehn&wg1] <- mean(umsatzdaten$Umsatz_Monat[Jun&achtzehn&wg1])
+umsatzdaten$Umsatz_Vormonat[Aug&achtzehn&wg1] <- mean(umsatzdaten$Umsatz_Monat[Jul&achtzehn&wg1])
+umsatzdaten$Umsatz_Vormonat[Sep&achtzehn&wg1] <- mean(umsatzdaten$Umsatz_Monat[Aug&achtzehn&wg1])
+umsatzdaten$Umsatz_Vormonat[Okt&achtzehn&wg1] <- mean(umsatzdaten$Umsatz_Monat[Sep&achtzehn&wg1])
+umsatzdaten$Umsatz_Vormonat[Nov&achtzehn&wg1] <- mean(umsatzdaten$Umsatz_Monat[Okt&achtzehn&wg1])
+umsatzdaten$Umsatz_Vormonat[Dez&achtzehn&wg1] <- mean(umsatzdaten$Umsatz_Monat[Nov&achtzehn&wg1])
 
 umsatzdaten$Umsatz_Vormonat[Jan&achtzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Dez&siebzehn&wg2])
 umsatzdaten$Umsatz_Vormonat[Feb&achtzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Jan&achtzehn&wg2])
 umsatzdaten$Umsatz_Vormonat[Mar&achtzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Feb&achtzehn&wg2])
 umsatzdaten$Umsatz_Vormonat[Apr&achtzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Mar&achtzehn&wg2])
 umsatzdaten$Umsatz_Vormonat[Mai&achtzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Apr&achtzehn&wg2])
+umsatzdaten$Umsatz_Vormonat[Jun&achtzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Mai&achtzehn&wg2])
+umsatzdaten$Umsatz_Vormonat[Jul&achtzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Jun&achtzehn&wg2])
+umsatzdaten$Umsatz_Vormonat[Aug&achtzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Jul&achtzehn&wg2])
+umsatzdaten$Umsatz_Vormonat[Sep&achtzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Aug&achtzehn&wg2])
+umsatzdaten$Umsatz_Vormonat[Okt&achtzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Sep&achtzehn&wg2])
+umsatzdaten$Umsatz_Vormonat[Nov&achtzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Okt&achtzehn&wg2])
+umsatzdaten$Umsatz_Vormonat[Dez&achtzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Nov&achtzehn&wg2])
 
 umsatzdaten$Umsatz_Vormonat[Jan&achtzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Dez&siebzehn&wg3])
 umsatzdaten$Umsatz_Vormonat[Feb&achtzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Jan&achtzehn&wg3])
 umsatzdaten$Umsatz_Vormonat[Mar&achtzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Feb&achtzehn&wg3])
 umsatzdaten$Umsatz_Vormonat[Apr&achtzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Mar&achtzehn&wg3])
 umsatzdaten$Umsatz_Vormonat[Mai&achtzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Apr&achtzehn&wg3])
+umsatzdaten$Umsatz_Vormonat[Jun&achtzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Mai&achtzehn&wg3])
+umsatzdaten$Umsatz_Vormonat[Jul&achtzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Jun&achtzehn&wg3])
+umsatzdaten$Umsatz_Vormonat[Aug&achtzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Jul&achtzehn&wg3])
+umsatzdaten$Umsatz_Vormonat[Sep&achtzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Aug&achtzehn&wg3])
+umsatzdaten$Umsatz_Vormonat[Okt&achtzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Sep&achtzehn&wg3])
+umsatzdaten$Umsatz_Vormonat[Nov&achtzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Okt&achtzehn&wg3])
+umsatzdaten$Umsatz_Vormonat[Dez&achtzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Nov&achtzehn&wg3])
 
 umsatzdaten$Umsatz_Vormonat[Jan&achtzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Dez&siebzehn&wg4])
 umsatzdaten$Umsatz_Vormonat[Feb&achtzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Jan&achtzehn&wg4])
 umsatzdaten$Umsatz_Vormonat[Mar&achtzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Feb&achtzehn&wg4])
 umsatzdaten$Umsatz_Vormonat[Apr&achtzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Mar&achtzehn&wg4])
 umsatzdaten$Umsatz_Vormonat[Mai&achtzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Apr&achtzehn&wg4])
+umsatzdaten$Umsatz_Vormonat[Jun&achtzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Mai&achtzehn&wg4])
+umsatzdaten$Umsatz_Vormonat[Jul&achtzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Jun&achtzehn&wg4])
+umsatzdaten$Umsatz_Vormonat[Aug&achtzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Jul&achtzehn&wg4])
+umsatzdaten$Umsatz_Vormonat[Sep&achtzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Aug&achtzehn&wg4])
+umsatzdaten$Umsatz_Vormonat[Okt&achtzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Sep&achtzehn&wg4])
+umsatzdaten$Umsatz_Vormonat[Nov&achtzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Okt&achtzehn&wg4])
+umsatzdaten$Umsatz_Vormonat[Dez&achtzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Nov&achtzehn&wg4])
 
 umsatzdaten$Umsatz_Vormonat[Jan&achtzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Dez&siebzehn&wg5])
 umsatzdaten$Umsatz_Vormonat[Feb&achtzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Jan&achtzehn&wg5])
 umsatzdaten$Umsatz_Vormonat[Mar&achtzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Feb&achtzehn&wg5])
 umsatzdaten$Umsatz_Vormonat[Apr&achtzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Mar&achtzehn&wg5])
 umsatzdaten$Umsatz_Vormonat[Mai&achtzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Apr&achtzehn&wg5])
+umsatzdaten$Umsatz_Vormonat[Jun&achtzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Mai&achtzehn&wg5])
+umsatzdaten$Umsatz_Vormonat[Jul&achtzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Jun&achtzehn&wg5])
+umsatzdaten$Umsatz_Vormonat[Aug&achtzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Jul&achtzehn&wg5])
+umsatzdaten$Umsatz_Vormonat[Sep&achtzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Aug&achtzehn&wg5])
+umsatzdaten$Umsatz_Vormonat[Okt&achtzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Sep&achtzehn&wg5])
+umsatzdaten$Umsatz_Vormonat[Nov&achtzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Okt&achtzehn&wg5])
+umsatzdaten$Umsatz_Vormonat[Dez&achtzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Nov&achtzehn&wg5])
 
 umsatzdaten$Umsatz_Vormonat[Jan&achtzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Dez&siebzehn&wg6])
 umsatzdaten$Umsatz_Vormonat[Feb&achtzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Jan&achtzehn&wg6])
 umsatzdaten$Umsatz_Vormonat[Mar&achtzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Feb&achtzehn&wg6])
 umsatzdaten$Umsatz_Vormonat[Apr&achtzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Mar&achtzehn&wg6])
 umsatzdaten$Umsatz_Vormonat[Mai&achtzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Apr&achtzehn&wg6])
+umsatzdaten$Umsatz_Vormonat[Jun&achtzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Mai&achtzehn&wg6])
+umsatzdaten$Umsatz_Vormonat[Jul&achtzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Jun&achtzehn&wg6])
+umsatzdaten$Umsatz_Vormonat[Aug&achtzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Jul&achtzehn&wg6])
+umsatzdaten$Umsatz_Vormonat[Sep&achtzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Aug&achtzehn&wg6])
+umsatzdaten$Umsatz_Vormonat[Okt&achtzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Sep&achtzehn&wg6])
+umsatzdaten$Umsatz_Vormonat[Nov&achtzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Okt&achtzehn&wg6])
+umsatzdaten$Umsatz_Vormonat[Dez&achtzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Nov&achtzehn&wg6])
+
+
+##2019##
+umsatzdaten$Umsatz_Vormonat[Jan&neunzehn&wg1] <- mean(umsatzdaten$Umsatz_Monat[Dez&achtzehn&wg1])
+umsatzdaten$Umsatz_Vormonat[Feb&neunzehn&wg1] <- mean(umsatzdaten$Umsatz_Monat[Jan&neunzehn&wg1])
+umsatzdaten$Umsatz_Vormonat[Mar&neunzehn&wg1] <- mean(umsatzdaten$Umsatz_Monat[Feb&neunzehn&wg1])
+umsatzdaten$Umsatz_Vormonat[Apr&neunzehn&wg1] <- mean(umsatzdaten$Umsatz_Monat[Mar&neunzehn&wg1])
+umsatzdaten$Umsatz_Vormonat[Mai&neunzehn&wg1] <- mean(umsatzdaten$Umsatz_Monat[Apr&neunzehn&wg1])
+umsatzdaten$Umsatz_Vormonat[Jun&neunzehn&wg1] <- mean(umsatzdaten$Umsatz_Monat[Mai&neunzehn&wg1])
+umsatzdaten$Umsatz_Vormonat[Jul&neunzehn&wg1] <- mean(umsatzdaten$Umsatz_Monat[Jun&neunzehn&wg1])
+umsatzdaten$Umsatz_Vormonat[Aug&neunzehn&wg1] <- mean(umsatzdaten$Umsatz_Monat[Jul&neunzehn&wg1])
+umsatzdaten$Umsatz_Vormonat[Sep&neunzehn&wg1] <- mean(umsatzdaten$Umsatz_Monat[Aug&neunzehn&wg1])
+umsatzdaten$Umsatz_Vormonat[Okt&neunzehn&wg1] <- mean(umsatzdaten$Umsatz_Monat[Sep&neunzehn&wg1])
+umsatzdaten$Umsatz_Vormonat[Nov&neunzehn&wg1] <- mean(umsatzdaten$Umsatz_Monat[Okt&neunzehn&wg1])
+umsatzdaten$Umsatz_Vormonat[Dez&neunzehn&wg1] <- mean(umsatzdaten$Umsatz_Monat[Nov&neunzehn&wg1])
+
+umsatzdaten$Umsatz_Vormonat[Jan&neunzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Dez&achtzehn&wg2])
+umsatzdaten$Umsatz_Vormonat[Feb&neunzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Jan&neunzehn&wg2])
+umsatzdaten$Umsatz_Vormonat[Mar&neunzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Feb&neunzehn&wg2])
+umsatzdaten$Umsatz_Vormonat[Apr&neunzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Mar&neunzehn&wg2])
+umsatzdaten$Umsatz_Vormonat[Mai&neunzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Apr&neunzehn&wg2])
+umsatzdaten$Umsatz_Vormonat[Jun&neunzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Mai&neunzehn&wg2])
+umsatzdaten$Umsatz_Vormonat[Jul&neunzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Jun&neunzehn&wg2])
+umsatzdaten$Umsatz_Vormonat[Aug&neunzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Jul&neunzehn&wg2])
+umsatzdaten$Umsatz_Vormonat[Sep&neunzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Aug&neunzehn&wg2])
+umsatzdaten$Umsatz_Vormonat[Okt&neunzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Sep&neunzehn&wg2])
+umsatzdaten$Umsatz_Vormonat[Nov&neunzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Okt&neunzehn&wg2])
+umsatzdaten$Umsatz_Vormonat[Dez&neunzehn&wg2] <- mean(umsatzdaten$Umsatz_Monat[Nov&neunzehn&wg2])
+
+umsatzdaten$Umsatz_Vormonat[Jan&neunzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Dez&achtzehn&wg3])
+umsatzdaten$Umsatz_Vormonat[Feb&neunzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Jan&neunzehn&wg3])
+umsatzdaten$Umsatz_Vormonat[Mar&neunzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Feb&neunzehn&wg3])
+umsatzdaten$Umsatz_Vormonat[Apr&neunzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Mar&neunzehn&wg3])
+umsatzdaten$Umsatz_Vormonat[Mai&neunzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Apr&neunzehn&wg3])
+umsatzdaten$Umsatz_Vormonat[Jun&neunzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Mai&neunzehn&wg3])
+umsatzdaten$Umsatz_Vormonat[Jul&neunzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Jun&neunzehn&wg3])
+umsatzdaten$Umsatz_Vormonat[Aug&neunzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Jul&neunzehn&wg3])
+umsatzdaten$Umsatz_Vormonat[Sep&neunzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Aug&neunzehn&wg3])
+umsatzdaten$Umsatz_Vormonat[Okt&neunzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Sep&neunzehn&wg3])
+umsatzdaten$Umsatz_Vormonat[Nov&neunzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Okt&neunzehn&wg3])
+umsatzdaten$Umsatz_Vormonat[Dez&neunzehn&wg3] <- mean(umsatzdaten$Umsatz_Monat[Nov&neunzehn&wg3])
+
+umsatzdaten$Umsatz_Vormonat[Jan&neunzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Dez&achtzehn&wg4])
+umsatzdaten$Umsatz_Vormonat[Feb&neunzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Jan&neunzehn&wg4])
+umsatzdaten$Umsatz_Vormonat[Mar&neunzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Feb&neunzehn&wg4])
+umsatzdaten$Umsatz_Vormonat[Apr&neunzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Mar&neunzehn&wg4])
+umsatzdaten$Umsatz_Vormonat[Mai&neunzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Apr&neunzehn&wg4])
+umsatzdaten$Umsatz_Vormonat[Jun&neunzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Mai&neunzehn&wg4])
+umsatzdaten$Umsatz_Vormonat[Jul&neunzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Jun&neunzehn&wg4])
+umsatzdaten$Umsatz_Vormonat[Aug&neunzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Jul&neunzehn&wg4])
+umsatzdaten$Umsatz_Vormonat[Sep&neunzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Aug&neunzehn&wg4])
+umsatzdaten$Umsatz_Vormonat[Okt&neunzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Sep&neunzehn&wg4])
+umsatzdaten$Umsatz_Vormonat[Nov&neunzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Okt&neunzehn&wg4])
+umsatzdaten$Umsatz_Vormonat[Dez&neunzehn&wg4] <- mean(umsatzdaten$Umsatz_Monat[Nov&neunzehn&wg4])
+
+umsatzdaten$Umsatz_Vormonat[Jan&neunzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Dez&achtzehn&wg5])
+umsatzdaten$Umsatz_Vormonat[Feb&neunzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Jan&neunzehn&wg5])
+umsatzdaten$Umsatz_Vormonat[Mar&neunzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Feb&neunzehn&wg5])
+umsatzdaten$Umsatz_Vormonat[Apr&neunzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Mar&neunzehn&wg5])
+umsatzdaten$Umsatz_Vormonat[Mai&neunzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Apr&neunzehn&wg5])
+umsatzdaten$Umsatz_Vormonat[Jun&neunzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Mai&neunzehn&wg5])
+umsatzdaten$Umsatz_Vormonat[Jul&neunzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Jun&neunzehn&wg5])
+umsatzdaten$Umsatz_Vormonat[Aug&neunzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Jul&neunzehn&wg5])
+umsatzdaten$Umsatz_Vormonat[Sep&neunzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Aug&neunzehn&wg5])
+umsatzdaten$Umsatz_Vormonat[Okt&neunzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Sep&neunzehn&wg5])
+umsatzdaten$Umsatz_Vormonat[Nov&neunzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Okt&neunzehn&wg5])
+umsatzdaten$Umsatz_Vormonat[Dez&neunzehn&wg5] <- mean(umsatzdaten$Umsatz_Monat[Nov&neunzehn&wg5])
+
+umsatzdaten$Umsatz_Vormonat[Jan&neunzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Dez&achtzehn&wg6])
+umsatzdaten$Umsatz_Vormonat[Feb&neunzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Jan&neunzehn&wg6])
+umsatzdaten$Umsatz_Vormonat[Mar&neunzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Feb&neunzehn&wg6])
+umsatzdaten$Umsatz_Vormonat[Apr&neunzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Mar&neunzehn&wg6])
+umsatzdaten$Umsatz_Vormonat[Mai&neunzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Apr&neunzehn&wg6])
+umsatzdaten$Umsatz_Vormonat[Jun&neunzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Mai&neunzehn&wg6])
+umsatzdaten$Umsatz_Vormonat[Jul&neunzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Jun&neunzehn&wg6])
+umsatzdaten$Umsatz_Vormonat[Aug&neunzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Jul&neunzehn&wg6])
+umsatzdaten$Umsatz_Vormonat[Sep&neunzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Aug&neunzehn&wg6])
+umsatzdaten$Umsatz_Vormonat[Okt&neunzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Sep&neunzehn&wg6])
+umsatzdaten$Umsatz_Vormonat[Nov&neunzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Okt&neunzehn&wg6])
+umsatzdaten$Umsatz_Vormonat[Dez&neunzehn&wg6] <- mean(umsatzdaten$Umsatz_Monat[Nov&neunzehn&wg6])
+
+umsatzdaten$Umsatz_Vormonat[is.nan(umsatzdaten$Umsatz_Vormonat)] <- NA
 ```
 
