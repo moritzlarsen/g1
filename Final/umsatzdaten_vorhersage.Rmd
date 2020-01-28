@@ -93,10 +93,10 @@ get.norm_values <- function (.data, select_columns = NULL) {
 ### Einlesen und Aufbereitung der Daten, Erstellung des Umsatzdatensatzes sowie des Vorhersagedatensatzes ###
 ```{r}
 # Einlesen der Daten
-umsatzdaten_raw <- read_csv("https://raw.githubusercontent.com/moritzlarsen/g1/master/umsatzdaten_gekuerzt.csv")
-wetter <- read_csv("https://raw.githubusercontent.com/moritzlarsen/g1/master/wetter.csv")
-kiwo <- read_csv("https://raw.githubusercontent.com/moritzlarsen/g1/master/kiwo.csv")
-TestDatenSlim <- read_csv("https://raw.githubusercontent.com/moritzlarsen/g1/master/TestDatenSuperSlim.csv")
+umsatzdaten_raw <- read_csv("https://raw.githubusercontent.com/moritzlarsen/g1/master/Final/umsatzdaten_gekuerzt.csv")
+wetter <- read_csv("https://raw.githubusercontent.com/moritzlarsen/g1/master/Final/wetter.csv")
+kiwo <- read_csv("https://raw.githubusercontent.com/moritzlarsen/g1/master/Final/kiwo.csv")
+TestDatenSlim <- read_csv("https://raw.githubusercontent.com/moritzlarsen/g1/master/Final/TestDatenSuperSlim.csv")
 
 
 #Kiwodaten und Wetterdaten zum Datensatz hinzufügen
