@@ -96,7 +96,7 @@ get.norm_values <- function (.data, select_columns = NULL) {
 umsatzdaten_raw <- read_csv("https://raw.githubusercontent.com/moritzlarsen/g1/master/umsatzdaten_gekuerzt.csv")
 wetter <- read_csv("https://raw.githubusercontent.com/moritzlarsen/g1/master/wetter.csv")
 kiwo <- read_csv("https://raw.githubusercontent.com/moritzlarsen/g1/master/kiwo.csv")
-TestDatenSlim <- read_csv("C:/Users/MARS/Downloads/TestDatenSuperSlim.csv")
+TestDatenSlim <- read_csv("https://raw.githubusercontent.com/moritzlarsen/g1/master/TestDatenSuperSlim.csv")
 
 
 #Kiwodaten und Wetterdaten zum Datensatz hinzufügen
